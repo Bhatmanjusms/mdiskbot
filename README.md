@@ -29,5 +29,6 @@
 
 *You can use the bot locally by either running* **main.py** or deploy using **Procfile** or **Dokerfile** or **docker-compose.yml**
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/D6ueVa?referralCode=_4oAwx)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/Z1_--K?referralCode=uMmPIr)
 
+* Signup by this Link https://railway.app/new/template/Z1_--K?referralCode=uMmPIr

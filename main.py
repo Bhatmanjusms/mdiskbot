@@ -40,7 +40,7 @@ def status(folder,message,fsize):
         result = subprocess.run(["du", "-hs", f"{folder}/"], capture_output=True, text=True)
         size = result.stdout[:-(length+2)]
         try:
-            app.edit_message_text(message.chat.id, message.id, f"__Downloaded__ : **{size} **__of__**  {fsize:.1f}M**")
+            app.edit_message_text(message.chat.id, message.id, f"╭───[ ᴅᴏᴡɴʟᴏᴀᴅ ꜱᴛᴀᴛꜱ ]──⍟\n│\n│⪼ ᴅᴏᴡɴʟᴏᴀᴅ : {size} of  {fsize:.1f}M\n│\n╰─────────────────⍟")
             time.sleep(10)
         except:
             time.sleep(5)

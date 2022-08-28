@@ -22,7 +22,7 @@ app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)
 # start command
 @app.on_message(filters.command(["start"]))
 def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
-    app.send_message(message.chat.id, '**Send link like this >> __/mdisk link__** \n\n**⚡Powered by @Groupdcbots**',reply_to_message_id=message.id)
+    app.send_message(message.chat.id, '**Send link like this >> __/mdisk link__** \n\n**😎 ᴘᴏᴡᴇʀᴇᴅ ʙʏ @Groupdcbots**',reply_to_message_id=message.id)
 
 
 # download status
@@ -40,7 +40,7 @@ def status(folder,message,fsize):
         result = subprocess.run(["du", "-hs", f"{folder}/"], capture_output=True, text=True)
         size = result.stdout[:-(length+2)]
         try:
-            app.edit_message_text(message.chat.id, message.id, f"╭───[ ᴅᴏᴡɴʟᴏᴀᴅ ꜱᴛᴀᴛꜱ ]──⍟\n│\n│⪼ ᴅᴏᴡɴʟᴏᴀᴅ : {size} of  {fsize:.1f}M\n│⪼ Size : {fsize:.1f}M\n│\n╰─────────────────⍟")
+            app.edit_message_text(message.chat.id, message.id, f"╭───[ ᴅᴏᴡɴʟᴏᴀᴅ ꜱᴛᴀᴛꜱ ]──⍟\n│\n│⪼ ᴅᴏᴡɴʟᴏᴀᴅ : {size} of  {fsize:.1f}M\n│⪼ ꜱɪᴢᴇ : {fsize:.1f}M\n│⪼ ꜰɪʟᴇ ɴᴀᴍᴇ : ` {filename} `\n│\n╰─────────────────⍟")
             time.sleep(10)
         except:
             time.sleep(5)
@@ -58,7 +58,7 @@ def upstatus(statusfile,message):
         with open(statusfile,"r") as upread:
             txt = upread.read()
         try:
-            app.edit_message_text(message.chat.id, message.id, f"╭───[ ᴜᴘʟᴏᴀᴅ ꜱᴛᴀᴛꜱ ]──⍟\n│\n│⪼ ᴜᴘʟᴏᴀᴅ : {txt} \n│⪼ Size : {fsize:.1f}M\n│\n╰─────────────────⍟")
+            app.edit_message_text(message.chat.id, message.id, f"╭───[ ᴜᴘʟᴏᴀᴅ ꜱᴛᴀᴛꜱ ]──⍟\n│\n│⪼ ᴜᴘʟᴏᴀᴅ : {txt} \n│⪼ ꜱɪᴢᴇ : {fsize:.1f}M\n│⪼ ꜰɪʟᴇ ɴᴀᴍᴇ : ` {filename} `\n│\n╰─────────────────⍟")
             time.sleep(10)
         except:
             time.sleep(5)
@@ -110,12 +110,12 @@ def down(message,link):
         app.edit_message_text(message.chat.id, msg.id, "__Uploading __")
         if os.path.exists(file):
             if not os.path.exists(f'{message.from_user.id}-thumb.jpg'):
-                app.send_document(message.chat.id,document=file, caption=f'**{filename}**', reply_to_message_id=message.id, progress=progress, progress_args=[message])
+                app.send_document(message.chat.id,document=file, caption=f'`{filename}`', reply_to_message_id=message.id, progress=progress, progress_args=[message])
             else:
-                app.send_document(message.chat.id,document=file,  caption=f'**{filename}**', thumb=f'{message.from_user.id}-thumb.jpg', reply_to_message_id=message.id, progress=progress, progress_args=[message])  
+                app.send_document(message.chat.id,document=file,  caption=f'`{filename}`', thumb=f'{message.from_user.id}-thumb.jpg', reply_to_message_id=message.id, progress=progress, progress_args=[message])  
             os.remove(file)
         else:
-            app.send_message(message.chat.id,"**Error in Merging File**",reply_to_message_id=message.id)
+            app.send_message(message.chat.id,"**Error in Merging File❕**",reply_to_message_id=message.id)
         
     if check == 0:
         app.send_message(message.chat.id,"__Can't remove the **restriction**, you have to use **MX player** to play this **video**\n\nThis happens because either the **file** length is **too small** or **video** doesn't have separate **audio layer**__",reply_to_message_id=message.id)
@@ -133,7 +133,7 @@ def mdiskdown(client: pyrogram.client.Client, message: pyrogram.types.messages_a
             d = threading.Thread(target=lambda:down(message,link),daemon=True)
             d.start()
     except:
-        app.send_message(message.chat.id, '**Send only __MDisk Link__ with command followed by the link**',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '**Send only __MDisk Link__ with command followed by the link \n ex: `/mdisk https://mdisk.me/convertor/16x9/nFEKyn`**',reply_to_message_id=message.id)
 
 
 # thumb command
@@ -142,13 +142,13 @@ def thumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_m
     
     try:
         if int(message.reply_to_message.document.file_size) > 200000:
-            app.send_message(message.chat.id, '**Thumbline size allowed is < 200 KB**',reply_to_message_id=message.id)
+            app.send_message(message.chat.id, '**Thumbline size allowed is < 200 KB❕**',reply_to_message_id=message.id)
             return
 
         msg = app.get_messages(message.chat.id, int(message.reply_to_message.id))
         file = app.download_media(msg)
         os.rename(file,f'{message.from_user.id}-thumb.jpg')
-        app.send_message(message.chat.id, '**Thumbnail is Set**',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '**Thumbnail is Set ✅**',reply_to_message_id=message.id)
 
     except:
         app.send_message(message.chat.id, '**reply __/thumb__ to a image document of size less than 200KB**',reply_to_message_id=message.id)
@@ -160,7 +160,7 @@ def showthumb(client: pyrogram.client.Client, message: pyrogram.types.messages_a
     if os.path.exists(f'{message.from_user.id}-thumb.jpg'):
         app.send_photo(message.chat.id,photo=f'{message.from_user.id}-thumb.jpg',reply_to_message_id=message.id)
     else:
-        app.send_message(message.chat.id, '**Thumbnail is not Set**',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '**Thumbnail is not Set 🤩**',reply_to_message_id=message.id)
 
 
 # remove thumbline command
@@ -168,9 +168,9 @@ def showthumb(client: pyrogram.client.Client, message: pyrogram.types.messages_a
 def removethumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     if os.path.exists(f'{message.from_user.id}-thumb.jpg'):
         os.remove(f'{message.from_user.id}-thumb.jpg')
-        app.send_message(message.chat.id, '**Thumbnail is Removed**',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '**Thumbnail is Removed 🥰**',reply_to_message_id=message.id)
     else:
-        app.send_message(message.chat.id, '**Thumbnail is not Set**',reply_to_message_id=message.id)
+        app.send_message(message.chat.id, '**Thumbnail is not Set❕**',reply_to_message_id=message.id)
 
 
 # thumbline
@@ -178,7 +178,7 @@ def removethumb(client: pyrogram.client.Client, message: pyrogram.types.messages
 def ptumb(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     file = app.download_media(message)
     os.rename(file,f'{message.from_user.id}-thumb.jpg')
-    app.send_message(message.chat.id, '**Thumbnail is Set**',reply_to_message_id=message.id)
+    app.send_message(message.chat.id, '**Thumbnail is Set ✅**',reply_to_message_id=message.id)
     
 
 # polling

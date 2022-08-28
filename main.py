@@ -13,7 +13,7 @@ from split import TG_SPLIT_SIZE
 
 
 # app
-bot_token = os.environ.get("TOKEN", "5473581289:AAHiLecdd3nK-ogxNqqjbll8MdqS7qkaSAk") 
+bot_token = os.environ.get("TOKEN", "5431709898:AAG_i_7G1kEX0oYoPRsjbkE2KZvsgpi_TVg") 
 api_hash = os.environ.get("HASH", "87faa32f68324a09aecdd9911db846a2") 
 api_id = os.environ.get("ID", "2904321")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)
@@ -22,7 +22,7 @@ app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)
 # start command
 @app.on_message(filters.command(["start"]))
 def echo(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
-    app.send_message(message.chat.id, '**Send link like this >> __/mdisk link__**',reply_to_message_id=message.id)
+    app.send_message(message.chat.id, '**Send link like this >> __/mdisk link__** \n\n**⚡Powered by @Groupdcbots**',reply_to_message_id=message.id)
 
 
 # download status
